@@ -2,11 +2,34 @@
   <div class="fouls-counter">
     <h1>2018 World Cup Foul Tracker</h1>
     <h2>The beautiful game</h2>
-    <ol>
-      <li>Total fouls: <span class="counter">{{ total_fouls_count }}</span></li>
-      <li>Total yellow cards: <span class="counter">{{ total_yellow_cards }}</span></li>
-      <li>Total red cards: <span class="counter">{{ total_red_cards }}</span></li>
-    </ol>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">Total fouls</div>
+              <span class="counter">{{ total_fouls_count }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">Total yellow cards</div>
+              <span class="counter">{{ total_yellow_cards }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">Total red cards</div>
+              <span class="counter">{{ total_red_cards }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 </template>
@@ -14,6 +37,8 @@
 <script>
 import request from 'request';
 import assert from 'assert';
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 const ENDPOINT = "https://worldcup.sfg.io/matches/";
 
@@ -87,15 +112,7 @@ export default {
 h3 {
   margin: 40px 0 0;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.counter {
+  font-size: 10em
 }
 </style>
