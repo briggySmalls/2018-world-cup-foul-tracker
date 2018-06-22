@@ -52,7 +52,7 @@ class Match {
   }
 
   totalStatistic(statistic) {
-    assert.equal(this.data.status, "completed")
+    assert.notEqual(this.data.status, "future")
     return (
       this.data.home_team_statistics[statistic] +
       this.data.away_team_statistics[statistic]);
@@ -69,12 +69,12 @@ class MatchesManager {
     }
   }
 
-  getCompleted() {
-    return this.matches.filter(match => match.status() === "completed");
+  getValid() {
+    return this.matches.filter(match => match.status() !== "future");
   }
 
   totalStatistic(statistic) {
-    return this.getCompleted().reduce((accumulator, match) => {
+    return this.getValid().reduce((accumulator, match) => {
       return accumulator + match.totalStatistic(statistic);
     }, 0);
   }
