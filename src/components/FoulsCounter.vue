@@ -1,9 +1,13 @@
 <template>
   <div class="fouls-counter">
-    <h1>World Cup 2018</h1>
-    <h3>Total fouls:
-      <span class="counter">{{ total_fouls_count }}</span>
-    </h3>
+    <h1>2018 World Cup Foul Tracker</h1>
+    <h2>The beautiful game</h2>
+    <ol>
+      <li>Total fouls: <span class="counter">{{ total_fouls_count }}</span></li>
+      <li>Total yellow cards: <span class="counter">{{ total_yellow_cards }}</span></li>
+      <li>Total red cards: <span class="counter">{{ total_red_cards }}</span></li>
+    </ol>
+
   </div>
 </template>
 
@@ -20,10 +24,6 @@ class Match {
 
   status() {
     return this.data.status;
-  }
-
-  totalFouls() {
-    return this.totalStatistic('fouls_committed');
   }
 
   totalStatistic(statistic) {
@@ -48,8 +48,10 @@ class MatchesManager {
     return this.matches.filter(match => match.status() === "completed");
   }
 
-  totalFoulsCount() {
-    return this.getCompleted().reduce((accumulator, match) => accumulator + match.totalFouls(), 0);
+  totalStatistic(statistic) {
+    return this.getCompleted().reduce((accumulator, match) => {
+      return accumulator + match.totalStatistic(statistic);
+    }, 0);
   }
 }
 
@@ -62,7 +64,13 @@ export default {
   },
   computed: {
     total_fouls_count: function () {
-      return this.matches.totalFoulsCount();
+      return this.matches.totalStatistic('fouls_committed');
+    },
+    total_yellow_cards: function () {
+      return this.matches.totalStatistic('yellow_cards');
+    },
+    total_red_cards: function () {
+      return this.matches.totalStatistic('red_cards');
     }
   },
   created: function () {
