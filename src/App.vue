@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <FoulsCounter msg="Welcome to Your Vue.js App"/>
+    <img id="logo" src="./assets/football.svg" class="img-fluid">
+    <FoulsCounter />
   </div>
 </template>
 
@@ -24,5 +24,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#logo {
+  width: 15em;
 }
 </style>

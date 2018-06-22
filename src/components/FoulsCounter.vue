@@ -1,8 +1,8 @@
 <template>
   <div class="fouls-counter">
-    <h1>2018 World Cup Foul Tracker</h1>
+    <h1 class="mb-2">2018 World Cup Foul Tracker</h1>
     <h2>The beautiful game</h2>
-    <div class="container-fluid">
+    <div class="container-fluid mt-2">
       <div class="row">
         <div class="col-md-4">
           <div class="card">
